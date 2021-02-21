@@ -1,11 +1,15 @@
-#************************
-#
-#
-#************************
+"""************************
+Эта игра buscet
+Автор: johnny-KIV
+************************"""
 
 import pygame
 import random
-root=pygame
+import os
+game_folder = os.path.dirname(__file__)
+img_folder = os.path.join(game_folder, 'img')
+apple_img = pygame.image.load(os.path.join(img_folder, 'images/gm_apple.png'))
+
 WIDTH = 1250
 HEIGHT = 650
 FPS = 30
@@ -19,13 +23,10 @@ BLUE = (0, 0, 255)
 
 class Apple(pygame.sprite.Sprite):
     def __init__(self):
-        b = random.randint(1, 9)
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((100, 100))
-        self.image.fill(WHITE)
+        self.image = apple_img
         self.rect = self.image.get_rect()
-        self.rect.center = (WIDTH / b, HEIGHT / b)
-
+        self.rect.center = (WIDTH / 2, HEIGHT / 2)
     def update(self):
         a = random.randint(1, 1230)
         self.rect.y += 20
