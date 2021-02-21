@@ -52,14 +52,14 @@ class Player(pygame.sprite.Sprite):
         self.speedx = 0
         keystate = pygame.key.get_pressed()
         if keystate[pygame.K_LEFT]:
-            self.speedx = -8
+            self.speedx = -30
         if keystate[pygame.K_RIGHT]:
-            self.speedx = 8
+            self.speedx = 30
         self.rect.x += self.speedx
         if self.rect.right > WIDTH:
             self.rect.right = WIDTH
-        if self.rect.left < 0:
-            self.rect.left = 0
+ #       if self.rect.left < 0:
+  #          self.rect.left = 0
 
 # Создаем игру и окно
 pygame.init()
@@ -67,11 +67,13 @@ pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Basket")
 clock = pygame.time.Clock()
-background_image = pygame.image.load('gm_bg.png')
+background_image = pygame.image.load('images/gm_bg.png')
 all_sprites = pygame.sprite.Group()
-all_sprites1 = pygame.sprite.Group()
+apple = Apple()
+all_sprites.add(apple)
+all_sprites2= pygame.sprite.Group()
 player = Player()
-all_sprites1.add(player)
+all_sprites2.add(player)
 # Цикл игры
 
 running = True
@@ -86,10 +88,10 @@ while running:
     screen.blit(background_image, (0, 0))
     # Обновление
     all_sprites.update()
+    all_sprites2.update()
     # Рендеринг
-    all_sprites1.update()
     all_sprites.draw(screen)
-    all_sprites1.draw(screen)
+    all_sprites2.draw(screen)
     # После отрисовки всего, переворачиваем экран
     pygame.display.flip()
 
