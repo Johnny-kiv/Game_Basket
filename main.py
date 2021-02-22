@@ -10,6 +10,7 @@ game_folder = os.path.dirname(__file__)
 img_folder = os.path.join(game_folder, 'images')
 apple_img = pygame.image.load(os.path.join(img_folder, 'gm_apple.png'))
 buscet_img = pygame.image.load(os.path.join(img_folder, 'gm_bowel.png'))
+good_img = pygame.image.load(os.path.join(img_folder, 'good.png'))
 WIDTH = 1250
 HEIGHT = 650
 FPS = 30
@@ -29,6 +30,7 @@ class Apple(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH / 2, HEIGHT / 2)
     def update(self):
+        a2=0
         a = random.randint(1, 1230)
         self.rect.y += 20
         c=random.randint(1,2)
@@ -39,15 +41,15 @@ class Apple(pygame.sprite.Sprite):
         if self.rect.bottom > HEIGHT:
             self.rect.top = 0
             self.rect.right = a
-        """if a"""
-
 class Player(pygame.sprite.Sprite):
+
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
+        a1 = random.randint(1, 9)
         self.image = buscet_img
         self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
-        self.rect.center = (WIDTH / 2, HEIGHT / 1.1)
+        self.rect.center = (WIDTH / a1, HEIGHT / 1.1)
 
     def update(self):
         self.speedx = 0
@@ -61,7 +63,15 @@ class Player(pygame.sprite.Sprite):
             self.rect.right = WIDTH
  #       if self.rect.left < 0:
   #          self.rect.left = 0
+class Good(pygame.sprite.Sprite):
 
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        a1 = random.randint(1, 9)
+        self.image = good_img
+        self.image.set_colorkey(WHITE)
+        self.rect = self.image.get_rect()
+        self.rect.center = (WIDTH / 1, HEIGHT / 9)
 # Создаем игру и окно
 pygame.init()
 pygame.mixer.init()
@@ -75,6 +85,9 @@ all_sprites.add(apple)
 all_sprites2= pygame.sprite.Group()
 player = Player()
 all_sprites2.add(player)
+all_sprites3= pygame.sprite.Group()
+good = Good()
+all_sprites3.add(player)
 # Цикл игры
 
 running = True
@@ -93,6 +106,7 @@ while running:
     # Рендеринг
     all_sprites.draw(screen)
     all_sprites2.draw(screen)
+    all_sprites3.draw(screen)
     # После отрисовки всего, переворачиваем экран
     pygame.display.flip()
 
