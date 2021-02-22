@@ -63,15 +63,14 @@ class Player(pygame.sprite.Sprite):
             self.rect.right = WIDTH
  #       if self.rect.left < 0:
   #          self.rect.left = 0
-class Good(pygame.sprite.Sprite):
+def  kasanie():
+    xa1=apple.rect.x-51
+    xa2=apple.rect.x+51
+    xk1=player.rect.x-76.5
+    xk2=player.rect.x+76.5
+    ya=apple.rect.y-52
+    yk=player.rect.y+47.5
 
-    def __init__(self):
-        pygame.sprite.Sprite.__init__(self)
-        a1 = random.randint(1, 9)
-        self.image = good_img
-        self.image.set_colorkey(WHITE)
-        self.rect = self.image.get_rect()
-        self.rect.center = (WIDTH / 1, HEIGHT / 9)
 # Создаем игру и окно
 pygame.init()
 pygame.mixer.init()
@@ -85,9 +84,7 @@ all_sprites.add(apple)
 all_sprites2= pygame.sprite.Group()
 player = Player()
 all_sprites2.add(player)
-all_sprites3= pygame.sprite.Group()
-good = Good()
-all_sprites3.add(player)
+
 # Цикл игры
 
 running = True
@@ -106,7 +103,6 @@ while running:
     # Рендеринг
     all_sprites.draw(screen)
     all_sprites2.draw(screen)
-    all_sprites3.draw(screen)
     # После отрисовки всего, переворачиваем экран
     pygame.display.flip()
 
