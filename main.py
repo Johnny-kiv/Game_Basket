@@ -7,9 +7,9 @@ import pygame
 import random
 import os
 game_folder = os.path.dirname(__file__)
-img_folder = os.path.join(game_folder, 'img')
-apple_img = pygame.image.load(os.path.join(img_folder, 'images/gm_apple.png'))
-
+img_folder = os.path.join(game_folder, 'images')
+apple_img = pygame.image.load(os.path.join(img_folder, 'gm_apple.png'))
+buscet_img = pygame.image.load(os.path.join(img_folder, 'gm_bowel.png'))
 WIDTH = 1250
 HEIGHT = 650
 FPS = 30
@@ -25,6 +25,7 @@ class Apple(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.image = apple_img
+        self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH / 2, HEIGHT / 2)
     def update(self):
@@ -38,16 +39,15 @@ class Apple(pygame.sprite.Sprite):
         if self.rect.bottom > HEIGHT:
             self.rect.top = 0
             self.rect.right = a
+        """if a"""
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((100, 50))
-        self.image.fill(GREEN)
+        self.image = buscet_img
+        self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH / 2
-        self.rect.bottom = HEIGHT - 10
-        self.speedx = 0
+        self.rect.center = (WIDTH / 2, HEIGHT / 1.1)
 
     def update(self):
         self.speedx = 0
