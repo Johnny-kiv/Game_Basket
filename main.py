@@ -21,10 +21,10 @@ z = 0
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
-GREEN = (200, 255, 200)
+GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 z=0
-z2=0
+z2 = 0
 class Apple(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -44,21 +44,22 @@ class Apple(pygame.sprite.Sprite):
         if self.rect.bottom > HEIGHT:
             self.rect.top = 0
             self.rect.right = a
-            z2=z+1
+            z2=z2+1
             fontObj = pygame.font.Font('freesansbold.ttf',26)
-            textSurfaceObj = fontObj.render(str(z2), True, GREEN, BLUE)
+            textSurfaceObj = fontObj.render(str(z2), True, BLACK, RED)
             textRectObj = textSurfaceObj.get_rect()
             textRectObj.center = (1200, 50)
             screen.blit(textSurfaceObj, textRectObj)
 class Player(pygame.sprite.Sprite):
 
     def __init__(self):
+
         pygame.sprite.Sprite.__init__(self)
         a1 = random.randint(1, 9)
         self.image = buscet_img
         self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
-        self.rect.center = (WIDTH / a1, HEIGHT / 1.1)
+        self.rect.center = (WIDTH / a1, 550)
 
     def update(self):
         self.speedx = 0
@@ -104,6 +105,7 @@ def  kasanie():
     else:
         return False
 # Создаем игру и окно
+
 pygame.init()
 pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -116,16 +118,17 @@ all_sprites.add(apple)
 all_sprites2= pygame.sprite.Group()
 player = Player()
 all_sprites2.add(player)
-all_sprites3= pygame.sprite.Group()
+"""all_sprites3= pygame.sprite.Group()
 good = Good()
 all_sprites3.add(good)
 all_sprites4= pygame.sprite.Group()
 bad = Bad()
-all_sprites4.add(bad)
+all_sprites4.add(bad)"""
 # Цикл игры
 """music = pygame.mixer.music.load('background_music.mp3')
 pygame.mixer.music.play(-1, 0.0)"""
 running = True
+
 while running:
 
     # Держим цикл на правильной скорости
@@ -138,16 +141,15 @@ while running:
     screen.blit(background_image, (0, 0))
 
     if kasanie():
-        print("есть касание")
         a3=random.randint(1, 1230)
         apple.rect.top = 0
         apple.rect.right = a3
         z=z+1
         fontObj = pygame.font.Font('freesansbold.ttf',26)
-        textSurfaceObj = fontObj.render(str(z), True, GREEN, BLACK)
+        textSurfaceObj = fontObj.render(str(z), True, BLACK, GREEN)
         textRectObj = textSurfaceObj.get_rect()
         textRectObj.center = (50, 50)
-        all_sprites3.blit(textSurfaceObj, textRectObj)
+        screen.blit(textSurfaceObj, textRectObj)
 
     # Обновление
     all_sprites.update()
@@ -155,9 +157,8 @@ while running:
     # Рендеринг
     all_sprites.draw(screen)
     all_sprites2.draw(screen)
-    all_sprites3.draw(screen)
-    all_sprites4.draw(screen)
-    kasanie()
+    """all_sprites3.draw(screen)
+    all_sprites4.draw(screen)"""
     # После отрисовки всего, переворачиваем экран
     pygame.display.flip()
 pygame.quit()
