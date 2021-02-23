@@ -14,7 +14,7 @@ good_img = pygame.image.load(os.path.join(img_folder, 'good.png'))
 WIDTH = 1250
 HEIGHT = 650
 FPS = 30
-
+z = 0
 # Задаем цвета
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -34,10 +34,10 @@ class Apple(pygame.sprite.Sprite):
         a = random.randint(1, 1230)
         self.rect.y += 20
         c=random.randint(1,2)
-        if c==1:
+        """if c==1:
             self.rect.x -= 20
         if c==2:
-            self.rect.x += 20
+            self.rect.x += 20"""
         if self.rect.bottom > HEIGHT:
             self.rect.top = 0
             self.rect.right = a
@@ -63,13 +63,19 @@ class Player(pygame.sprite.Sprite):
             self.rect.right = WIDTH
  #       if self.rect.left < 0:
   #          self.rect.left = 0
+
 def  kasanie():
+
     xa1=apple.rect.x-51
     xa2=apple.rect.x+51
     xk1=player.rect.x-76.5
     xk2=player.rect.x+76.5
-    ya=apple.rect.y-52
-    yk=player.rect.y+47.5
+    ya1=apple.rect.y-52
+    ya2=apple.rect.y+52
+    yk1=player.rect.y+47.5
+    yk2=player.rect.y-47.5
+    if ya1==yk1 and xa1>=xk1 and xa2<=xk2 and (ya1==yk1 or ya2==yk2 or (ya1==yk1 and ya2==yk2)):
+        z = z+1
 
 # Создаем игру и окно
 pygame.init()
@@ -103,8 +109,8 @@ while running:
     # Рендеринг
     all_sprites.draw(screen)
     all_sprites2.draw(screen)
+    kasanie()
     # После отрисовки всего, переворачиваем экран
     pygame.display.flip()
-
-
 pygame.quit()
+print(z)
