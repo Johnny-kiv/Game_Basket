@@ -6,6 +6,7 @@
 import pygame
 import random
 import os
+import time
 game_folder = os.path.dirname(__file__)
 img_folder = os.path.join(game_folder, 'images')
 apple_img = pygame.image.load(os.path.join(img_folder, 'gm_apple.png'))
@@ -21,7 +22,7 @@ BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (200, 255, 200)
 BLUE = (0, 0, 255)
-
+z=0
 class Apple(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -70,13 +71,12 @@ def  kasanie():
     xa2=apple.rect.x+51
     xk1=player.rect.x-76.5
     xk2=player.rect.x+76.5
-    ya1=apple.rect.y-52
-    ya2=apple.rect.y+52
-    yk1=player.rect.y+47.5
-    yk2=player.rect.y-47.5
-    if ya1==yk1 and xa1>=xk1 and xa2<=xk2 and (ya1==yk1 or ya2==yk2 or (ya1==yk1 and ya2==yk2)):
-        z = z+1
-
+    ya=apple.rect.y+52
+    yk=player.rect.y-47.5
+    if ya>=yk and  (xa2<=xk1  or xa1<=xk2 ):
+        return True
+    else:
+        return False
 # Создаем игру и окно
 pygame.init()
 pygame.mixer.init()
@@ -90,7 +90,6 @@ all_sprites.add(apple)
 all_sprites2= pygame.sprite.Group()
 player = Player()
 all_sprites2.add(player)
-
 # Цикл игры
 
 running = True
@@ -103,6 +102,18 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     screen.blit(background_image, (0, 0))
+
+    if kasanie():
+        print("есть касание")
+        a3=random.randint(1, 1230)
+        apple.rect.top = 0
+        apple.rect.right = a3
+        fontObj = pygame.font.Font('freesansbold.ttf', 50)
+        textSurfaceObj = fontObj.render('\a Hello world!', True, GREEN, BLUE)
+        textRectObj = textSurfaceObj.get_rect()
+        textRectObj.center = (500, 400)
+        screen.blit(textSurfaceObj, textRectObj)
+
     # Обновление
     all_sprites.update()
     all_sprites2.update()
@@ -113,4 +124,3 @@ while running:
     # После отрисовки всего, переворачиваем экран
     pygame.display.flip()
 pygame.quit()
-print(z)
