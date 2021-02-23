@@ -123,9 +123,11 @@ all_sprites4= pygame.sprite.Group()
 bad = Bad()
 all_sprites4.add(bad)
 # Цикл игры
-
+"""music = pygame.mixer.music.load('background_music.mp3')
+pygame.mixer.music.play(-1, 0.0)"""
 running = True
 while running:
+
     # Держим цикл на правильной скорости
     clock.tick(FPS)
     # Ввод процесса (события)
@@ -142,10 +144,10 @@ while running:
         apple.rect.right = a3
         z=z+1
         fontObj = pygame.font.Font('freesansbold.ttf',26)
-        textSurfaceObj = fontObj.render(str(z), True, GREEN, BLUE)
+        textSurfaceObj = fontObj.render(str(z), True, GREEN, BLACK)
         textRectObj = textSurfaceObj.get_rect()
         textRectObj.center = (50, 50)
-        screen.blit(textSurfaceObj, textRectObj)
+        all_sprites3.blit(textSurfaceObj, textRectObj)
 
     # Обновление
     all_sprites.update()
