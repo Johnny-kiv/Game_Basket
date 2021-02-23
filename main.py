@@ -12,6 +12,7 @@ img_folder = os.path.join(game_folder, 'images')
 apple_img = pygame.image.load(os.path.join(img_folder, 'gm_apple.png'))
 buscet_img = pygame.image.load(os.path.join(img_folder, 'gm_bowel.png'))
 good_img = pygame.image.load(os.path.join(img_folder, 'good.png'))
+bad_img = pygame.image.load(os.path.join(img_folder, 'bad.png'))
 WIDTH = 1250
 HEIGHT = 650
 FPS = 30
@@ -23,6 +24,7 @@ RED = (255, 0, 0)
 GREEN = (200, 255, 200)
 BLUE = (0, 0, 255)
 z=0
+z2=0
 class Apple(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -42,6 +44,12 @@ class Apple(pygame.sprite.Sprite):
         if self.rect.bottom > HEIGHT:
             self.rect.top = 0
             self.rect.right = a
+            z2=z+1
+            fontObj = pygame.font.Font('freesansbold.ttf',26)
+            textSurfaceObj = fontObj.render(str(z2), True, GREEN, BLUE)
+            textRectObj = textSurfaceObj.get_rect()
+            textRectObj.center = (1200, 50)
+            screen.blit(textSurfaceObj, textRectObj)
 class Player(pygame.sprite.Sprite):
 
     def __init__(self):
@@ -64,6 +72,24 @@ class Player(pygame.sprite.Sprite):
             self.rect.right = WIDTH
  #       if self.rect.left < 0:
   #          self.rect.left = 0
+class Good(pygame.sprite.Sprite):
+
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        a1 = random.randint(1, 9)
+        self.image = good_img
+        self.image.set_colorkey(WHITE)
+        self.rect = self.image.get_rect()
+        self.rect.center = (50, 50)
+class Bad(pygame.sprite.Sprite):
+
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        a1 = random.randint(1, 9)
+        self.image = bad_img
+        self.image.set_colorkey(WHITE)
+        self.rect = self.image.get_rect()
+        self.rect.center = (1200, 50)
 
 def  kasanie():
 
@@ -90,6 +116,12 @@ all_sprites.add(apple)
 all_sprites2= pygame.sprite.Group()
 player = Player()
 all_sprites2.add(player)
+all_sprites3= pygame.sprite.Group()
+good = Good()
+all_sprites3.add(good)
+all_sprites4= pygame.sprite.Group()
+bad = Bad()
+all_sprites4.add(bad)
 # Цикл игры
 
 running = True
@@ -108,10 +140,11 @@ while running:
         a3=random.randint(1, 1230)
         apple.rect.top = 0
         apple.rect.right = a3
-        fontObj = pygame.font.Font('freesansbold.ttf', 50)
-        textSurfaceObj = fontObj.render('\a Hello world!', True, GREEN, BLUE)
+        z=z+1
+        fontObj = pygame.font.Font('freesansbold.ttf',26)
+        textSurfaceObj = fontObj.render(str(z), True, GREEN, BLUE)
         textRectObj = textSurfaceObj.get_rect()
-        textRectObj.center = (500, 400)
+        textRectObj.center = (50, 50)
         screen.blit(textSurfaceObj, textRectObj)
 
     # Обновление
@@ -120,6 +153,8 @@ while running:
     # Рендеринг
     all_sprites.draw(screen)
     all_sprites2.draw(screen)
+    all_sprites3.draw(screen)
+    all_sprites4.draw(screen)
     kasanie()
     # После отрисовки всего, переворачиваем экран
     pygame.display.flip()
