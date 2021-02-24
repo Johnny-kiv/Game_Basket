@@ -24,7 +24,7 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 z=0
-a2 = 0
+
 class Apple(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -33,6 +33,7 @@ class Apple(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH / 2, HEIGHT / 2)
     def update(self):
+
         a = random.randint(1, 1230)
         self.rect.y += 40
         c=random.randint(1,2)
@@ -41,15 +42,7 @@ class Apple(pygame.sprite.Sprite):
         if c==2:
             self.rect.x += 20
 
-        if self.rect.bottom > HEIGHT:
-            self.rect.top = 0
-            self.rect.right = a
-            a2 = a2 + 1
-            fontObj = pygame.font.Font('freesansbold.ttf', 16)
-            textSurfaceObj = fontObj.render(str(a2), True, BLACK, RED)
-            textRectObj = textSurfaceObj.get_rect()
-            textRectObj.center = (1200, 50)
-            screen.blit(textSurfaceObj, textRectObj)
+
 class Player(pygame.sprite.Sprite):
 
     def __init__(self):
@@ -68,10 +61,10 @@ class Player(pygame.sprite.Sprite):
         if keystate[pygame.K_RIGHT]:
             self.speedx = 150
         self.rect.x += self.speedx
-        """if self.rect.right > WIDTH:
+        if self.rect.right > WIDTH:
             self.rect.right = WIDTH
         if self.rect.left < 0:
-            self.rect.left = 0"""
+            self.rect.left = 0
 class Good(pygame.sprite.Sprite):
 
     def __init__(self):
@@ -127,7 +120,12 @@ all_sprites4.add(bad)
 """music = pygame.mixer.music.load('background_music.mp3')
 pygame.mixer.music.play(-1, 0.0)"""
 running = True
-
+a2 = 0
+fontObj2 = pygame.font.Font('freesansbold.ttf', 26)
+textSurfaceObj2 = fontObj2.render("0", True, BLACK, RED)
+textRectObj2 = textSurfaceObj2.get_rect()
+textRectObj2.center = (1200, 50)
+screen.blit(textSurfaceObj2, textRectObj2)
 while running:
 
     # Держим цикл на правильной скорости
@@ -149,7 +147,16 @@ while running:
         textRectObj = textSurfaceObj.get_rect()
         textRectObj.center = (50, 50)
         screen.blit(textSurfaceObj, textRectObj)
-
+    if apple.rect.y>HEIGHT:
+        s2= random.randint(1, 1230)
+        apple.rect.top = 0
+        apple.rect.right = s2
+        a2 = a2 + 1
+        fontObj = pygame.font.Font('freesansbold.ttf', 26)
+        textSurfaceObj = fontObj.render(str(a2),True, BLACK, RED)
+        textRectObj = textSurfaceObj.get_rect()
+        textRectObj.center = (1200, 50)
+        screen.blit(textSurfaceObj, textRectObj)
 
     # Обновление
     all_sprites.update()
