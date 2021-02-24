@@ -37,12 +37,10 @@ class Apple(pygame.sprite.Sprite):
         a = random.randint(1, 1230)
         self.rect.y += 40
         c=random.randint(1,2)
-        if c==1:
+        """if c==1:
             self.rect.x -= 20
         if c==2:
-            self.rect.x += 20
-
-
+            self.rect.x += 20"""
 class Player(pygame.sprite.Sprite):
 
     def __init__(self):
@@ -121,11 +119,6 @@ all_sprites4.add(bad)
 pygame.mixer.music.play(-1, 0.0)"""
 running = True
 a2 = 0
-fontObj2 = pygame.font.Font('freesansbold.ttf', 26)
-textSurfaceObj2 = fontObj2.render("0", True, BLACK, RED)
-textRectObj2 = textSurfaceObj2.get_rect()
-textRectObj2.center = (1200, 50)
-screen.blit(textSurfaceObj2, textRectObj2)
 while running:
 
     # Держим цикл на правильной скорости
@@ -157,7 +150,6 @@ while running:
         textRectObj = textSurfaceObj.get_rect()
         textRectObj.center = (1200, 50)
         screen.blit(textSurfaceObj, textRectObj)
-
     # Обновление
     all_sprites.update()
     all_sprites2.update()
