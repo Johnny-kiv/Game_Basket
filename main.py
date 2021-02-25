@@ -2,7 +2,7 @@
 Эта игра buscet
 Автор: johnny-KIV
 ************************"""
-
+import turtle
 import pygame
 import random
 import os
@@ -24,7 +24,6 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 z=0
-
 class Apple(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
