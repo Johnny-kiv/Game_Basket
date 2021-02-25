@@ -2,7 +2,6 @@
 Эта игра buscet
 Автор: johnny-KIV
 ************************"""
-import turtle
 import pygame
 import random
 import os
@@ -118,6 +117,7 @@ all_sprites4.add(bad)
 pygame.mixer.music.play(-1, 0.0)"""
 running = True
 a2 = 0
+fontObj = pygame.font.Font('freesansbold.ttf',26)
 while running:
 
     # Держим цикл на правильной скорости
@@ -134,21 +134,13 @@ while running:
         apple.rect.top = 0
         apple.rect.right = a3
         z=z+1
-        fontObj = pygame.font.Font('freesansbold.ttf',26)
-        textSurfaceObj = fontObj.render(str(z), True, BLACK, GREEN)
-        textRectObj = textSurfaceObj.get_rect()
-        textRectObj.center = (50, 50)
-        screen.blit(textSurfaceObj, textRectObj)
+
     if apple.rect.y>HEIGHT:
         s2= random.randint(1, 1230)
         apple.rect.top = 0
         apple.rect.right = s2
         a2 = a2 + 1
-        fontObj = pygame.font.Font('freesansbold.ttf', 26)
-        textSurfaceObj = fontObj.render(str(a2),True, BLACK, RED)
-        textRectObj = textSurfaceObj.get_rect()
-        textRectObj.center = (1200, 50)
-        screen.blit(textSurfaceObj, textRectObj)
+
     # Обновление
     all_sprites.update()
     all_sprites2.update()
@@ -157,6 +149,17 @@ while running:
     all_sprites2.draw(screen)
     all_sprites3.draw(screen)
     all_sprites4.draw(screen)
+
+    textSurfaceObj = fontObj.render(str(z), True, BLACK, GREEN)
+    textRectObj = textSurfaceObj.get_rect()
+    textRectObj.center = (50, 50)
+    screen.blit(textSurfaceObj, textRectObj)
+
+    textSurfaceObj = fontObj.render(str(a2), True, BLACK, RED)
+    textRectObj = textSurfaceObj.get_rect()
+    textRectObj.center = (1200, 50)
+    screen.blit(textSurfaceObj, textRectObj)
+
     # После отрисовки всего, переворачиваем экран
     pygame.display.flip()
 pygame.quit()
