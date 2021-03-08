@@ -14,7 +14,7 @@ good_img = pygame.image.load(os.path.join(img_folder, 'good.png'))
 bad_img = pygame.image.load(os.path.join(img_folder, 'bad.png'))
 WIDTH = 1250
 HEIGHT = 650
-FPS = 30
+FPS = 50
 z = 0
 # Задаем цвета
 WHITE = (255, 255, 255)
