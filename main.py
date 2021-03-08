@@ -118,6 +118,7 @@ pygame.mixer.music.play(-1, 0.0)"""
 running = True
 a2 = 0
 fontObj = pygame.font.Font('freesansbold.ttf',26)
+
 while running:
 
     # Держим цикл на правильной скорости
