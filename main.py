@@ -96,7 +96,7 @@ def  kasanie():
 
 pygame.init()
 pygame.mixer.init()
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    
 pygame.display.set_caption("Basket")
 clock = pygame.time.Clock()
 background_image = pygame.image.load('images/gm_bg.png')
